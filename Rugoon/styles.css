@@ -1,0 +1,428 @@
+:root {
+    --primary: #E84142;
+    --glow: rgba(232, 65, 66, 0.4);
+}
+
+/* Reset and base styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    background: #000;
+    min-height: 100vh;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    overflow: hidden;
+}
+
+/* Main image with effects */
+
+.mysterious-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    filter: contrast(1.4) brightness(0.6);
+    transform: scale(1.1);
+    will-change: transform;
+}
+
+/* Container layout */
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Main title with glitch effect */
+
+
+.glitch {
+    margin-bottom: 120px; /* Increased space below the glitch text */
+    font-size: 180px;
+    font-weight: 900;
+    position: relative;
+    color: white;
+    text-transform: uppercase;
+    text-shadow: 3px 0 red, -3px 0 cyan;
+    animation: glitch-shift 1.5s infinite alternate-reverse;
+}
+
+/* Duplicate layers for glitch effect */
+.glitch::before,
+.glitch::after {
+    content: "RUGON";
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0.8;
+}
+
+.glitch::before {
+    color: red;
+    z-index: -1;
+    animation: glitch-before 0.8s infinite alternate-reverse;
+}
+
+.glitch::after {
+    color: cyan;
+    z-index: -1;
+    animation: glitch-after 1s infinite alternate-reverse;
+}
+
+/* Keyframes for glitch effect */
+@keyframes glitch-shift {
+    0% { transform: skew(0deg); }
+    20% { transform: skew(-5deg); }
+    40% { transform: skew(5deg); }
+    60% { transform: skew(-3deg); }
+    80% { transform: skew(3deg); }
+    100% { transform: skew(0deg); }
+}
+
+@keyframes glitch-before {
+    0% { transform: translate(-2px, 0); }
+    50% { transform: translate(-5px, -2px); }
+    100% { transform: translate(2px, 2px); }
+}
+
+@keyframes glitch-after {
+    0% { transform: translate(2px, 0); }
+    50% { transform: translate(5px, 2px); }
+    100% { transform: translate(-2px, -2px); }
+}
+
+/* Cryptic-text */
+
+.cryptic-text {
+    font-size: 50px;  /* Adjust as needed */
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Add this to center the image */
+.centered-image {
+    margin: 40px auto;
+    position: absolute; /* Allows for absolute centering */
+    top: 50%; /* Centers the image vertically */
+    left: 50%; /* Centers the image horizontally */
+    transform: translate(-50%, -50%); /* Adjusts for the image's own size */
+    max-width: 80%; /* Limits the width if necessary */
+    max-height: 80%; /* Limits the height if necessary */
+    object-fit: contain; /* Ensures the image fits well without stretching */
+}
+
+
+/* Social Buttons Container */
+.social-buttons {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+/* Button Base Styles */
+.social-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #ff0000, #ff6600);
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    position: relative;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.8);
+    overflow: hidden;
+    animation: rotateBox 3s linear infinite;
+}
+
+/* Icon Styling */
+.social-button i {
+    font-size: 2em;
+}
+
+/* Fire Glow Effect */
+@keyframes fireGlow {
+    0% { box-shadow: 0 0 10px rgba(255, 69, 0, 0.6); }
+    50% { box-shadow: 0 0 25px rgba(255, 69, 0, 1); }
+    100% { box-shadow: 0 0 10px rgba(255, 69, 0, 0.6); }
+}
+
+.social-button:hover {
+    animation: fireGlow 1.5s infinite alternate;
+    transform: scale(1.1);
+}
+
+/* Click Effect */
+.social-button:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px rgba(255, 69, 0, 0.5);
+}
+
+/* Rotating Square Animation */
+@keyframes rotateBox {
+    50% { transform: rotate(0deg); }
+  
+}
+
+/* Custom Cursor */
+/* 🔥 Custom Blazing Cursor */
+.cursor {
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle, rgba(255, 69, 0, 1) 0%, rgba(255, 0, 0, 0.6) 70%);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.9);
+    transition: width 0.1s ease, height 0.1s ease;
+}
+
+/* 🔥 Fire Trail Particles */
+.cursor-trail {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: rgba(255, 140, 0, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(8px);
+    animation: fireTrail 0.6s linear forwards;
+}
+
+
+
+/* 🎯 Hover Effects */
+button:hover, a:hover, .social-buttons:hover {
+    cursor: none;
+}
+button:hover ~ .cursor, a:hover ~ .cursor {
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle, rgba(255, 200, 0, 1) 0%, rgba(255, 140, 0, 0.8) 70%);
+    box-shadow: 0 0 20px rgba(255, 165, 0, 1);
+}
+
+/* Custom cursor 
+
+.cursor {
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 999;
+    mix-blend-mode: difference;
+    transition: transform 0.2s ease;
+    will-change: transform, left, top;
+    box-shadow: 0 0 20px var(--glow);
+}
+
+.cursor.active {
+    transform: scale(0.5);
+}
+    */
+
+/* Particle effects 
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.particle {
+    position: absolute;
+    background: var(--primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleAnimation 2s ease-out forwards;
+    will-change: transform, opacity;
+}
+
+@keyframes particleAnimation {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-100px);
+        opacity: 0;
+    }
+}
+*/
+/* Whitelist message */
+
+.wl-message {
+    position: fixed;
+    bottom: 100px;
+    width: 100%;
+    text-align: center;
+    font-family: monospace;
+    font-size: 14px;
+    color: var(--primary);
+    opacity: 0;
+    animation: wlPulse 4s ease-in-out infinite;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    will-change: opacity;
+}
+
+/* All animations */
+
+@keyframes pulse {
+    0%,
+    100% {
+        text-shadow: -2px -2px 0 var(--primary), 2px 2px 0 var(--primary), 0 0 20px var(--primary);
+    }
+    50% {
+        text-shadow: -1px -1px 0 var(--primary), 1px 1px 0 var(--primary), 0 0 30px var(--primary);
+    }
+}
+
+@keyframes wlPulse {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Effet de code en arrière-plan */
+
+.code-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.03;
+    background: linear-gradient(rgba(232, 65, 66, 0.1) 50%, transparent 50%), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 30px 30px, 30px 30px;
+    animation: codeBg 20s linear infinite;
+    will-change: transform;
+}
+
+@keyframes codeBg {
+    to {
+        transform: translateY(-50%);
+    }
+}
+
+/* Responsive Design */
+
+@media screen and (max-width: 1024px) {
+    .glitch {
+        font-size: 120px;
+    }
+    .centered-image {
+        max-width: 70%;
+        max-height: 70%;
+        top: 48%; /* Adjusting image positioning */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .glitch {
+        font-size: 80px;
+        margin-bottom: 30px; /* Reduce space below RUGON */
+    }
+    .centered-image {
+        max-width: 60%;
+        max-height: 60%;
+        top: 47%; /* Move the image slightly up */
+    }
+    .wl-message {
+        bottom: 50px;
+        font-size: 12px;
+        padding: 0 20px;
+    }
+    .cryptic-text {
+        font-size: 30px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .social-buttons {
+        flex-direction: row;
+        gap: 15px;
+    }
+    .social-button {
+        width: 50px;
+        height: 50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .glitch {
+        font-size: 50px;
+        letter-spacing: -2px;
+        margin-bottom: 20px; /* Reduce space below RUGON */
+    }
+    .centered-image {
+        max-width: 50%;
+        max-height: 50%;
+        top: 45%; /* Move the image up more */
+    }
+    .wl-message {
+        bottom: 30px;
+        font-size: 10px;
+    }
+    .cursor {
+        display: none;
+    }
+    * {
+        cursor: auto !important;
+    }
+    .cryptic-text {
+        font-size: 20px;
+    }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+    .glitch {
+        font-size: 30px;
+    }
+    .wl-message {
+        bottom: 20px;
+    }
+}
